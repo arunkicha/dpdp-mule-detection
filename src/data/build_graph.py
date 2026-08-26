@@ -179,21 +179,23 @@ def temporal_split(df: pd.DataFrame):
 # ---------------------------------------------------------------------
 # 4. BANK-BASED PARTITION (for the federated learning simulation, Step 3)
 # ---------------------------------------------------------------------
-def partition_by_bank(df: pd.DataFrame, node_bank: pd.DataFrame, min_edges: int = 1000):
+def partition_by_bank(df: pd.DataFrame, node_bank: pd.DataFrame, n_clients: int = 8):
     """
-    Returns {bank_id: edge_index_dataframe} keeping only transactions where
-    BOTH endpoints belong to that bank's account set (a simplification --
-    cross-bank transactions can instead be treated as boundary edges known
-    to both clients, or dropped, depending on how strict your privacy
-    story needs to be).
-    Banks with fewer than `min_edges` transactions are merged into an
-    "OTHER" bucket to avoid too many tiny, unstable federated clients.
+    Returns {bank_id: edge_index_dataframe}, capped to `n_clients` simulated
+    federated institutions: the top-`n_clients` banks by transaction volume
+    each become their own client, and every other bank is merged into a
+    single "OTHER" bucket.
+
+    This caps the FL simulation to a realistic, fast-to-run number of
+    clients (published FL papers typically use 3-50 simulated clients;
+    an uncapped per-bank split on AMLworld produces 800+ clients, which is
+    both unrealistic and painfully slow to train).
     """
     bank_counts = df["from_bank"].value_counts()
-    small_banks = set(bank_counts[bank_counts < min_edges].index)
+    top_banks = set(bank_counts.head(n_clients).index)
 
     def bucket(b):
-        return "OTHER" if b in small_banks else b
+        return b if b in top_banks else "OTHER"
 
     df = df.copy()
     df["client_bucket"] = df["from_bank"].apply(bucket)
@@ -242,7 +244,7 @@ def main():
     print(df["split"].value_counts().to_string())
 
     print("Partitioning by bank for federated simulation...")
-    partitions = partition_by_bank(df, node_bank)
+    partitions = partition_by_bank(df, node_bank, n_clients=8)
     print(f"  {len(partitions)} client buckets (banks): "
           f"{list(partitions.keys())[:10]}{'...' if len(partitions) > 10 else ''}")
 
