@@ -1,0 +1,261 @@
+Using device: cpu
+Seed: 42
+
+Loading transaction data...
+Nodes: 515,088
+Transactions: 5,078,345
+Training transactions: 3,047,007
+Validation transactions: 1,015,669
+Test transactions: 1,015,669
+
+Federated clients: 10
+Clients:
+[10, 12, 1, 15, 20, 11, 119, 222, 223, 48309]
+
+Preparing client datasets...
+  Bank 10: 65,225 local records | 46 positives
+  Bank 12: 64,594 local records | 74 positives
+  Bank 1: 48,628 local records | 32 positives
+  Bank 15: 45,549 local records | 34 positives
+  Bank 20: 33,146 local records | 40 positives
+  Bank 11: 23,157 local records | 25 positives
+  Bank 119: 17,006 local records | 49 positives
+  Bank 222: 7,403 local records | 31 positives
+  Bank 223: 6,933 local records | 12 positives
+  Bank 48309: 3,882 local records | 25 positives
+
+============================================================
+FEDERATED ROUND 1/10
+============================================================
+  Bank 10: 65,225 records trained | 46 positives
+  Bank 12: 64,594 records trained | 74 positives
+  Bank 1: 48,628 records trained | 32 positives
+  Bank 15: 45,549 records trained | 34 positives
+  Bank 20: 33,146 records trained | 40 positives
+  Bank 11: 23,157 records trained | 25 positives
+  Bank 119: 17,006 records trained | 49 positives
+  Bank 222: 7,403 records trained | 31 positives
+  Bank 223: 6,933 records trained | 12 positives
+  Bank 48309: 3,882 records trained | 25 positives
+
+Validation:
+  Precision: 0.0024
+  Recall: 0.4043
+  F1: 0.0047
+  ROC-AUC: 0.6579
+  PR-AUC: 0.0023
+
+============================================================
+FEDERATED ROUND 2/10
+============================================================
+  Bank 10: 65,225 records trained | 46 positives
+  Bank 12: 64,594 records trained | 74 positives
+  Bank 1: 48,628 records trained | 32 positives
+  Bank 15: 45,549 records trained | 34 positives
+  Bank 20: 33,146 records trained | 40 positives
+  Bank 11: 23,157 records trained | 25 positives
+  Bank 119: 17,006 records trained | 49 positives
+  Bank 222: 7,403 records trained | 31 positives
+  Bank 223: 6,933 records trained | 12 positives
+  Bank 48309: 3,882 records trained | 25 positives
+
+Validation:
+  Precision: 0.0016
+  Recall: 0.6966
+  F1: 0.0032
+  ROC-AUC: 0.6448
+  PR-AUC: 0.0017
+
+============================================================
+FEDERATED ROUND 3/10
+============================================================
+  Bank 10: 65,225 records trained | 46 positives
+  Bank 12: 64,594 records trained | 74 positives
+  Bank 1: 48,628 records trained | 32 positives
+  Bank 15: 45,549 records trained | 34 positives
+  Bank 20: 33,146 records trained | 40 positives
+  Bank 11: 23,157 records trained | 25 positives
+  Bank 119: 17,006 records trained | 49 positives
+  Bank 222: 7,403 records trained | 31 positives
+  Bank 223: 6,933 records trained | 12 positives
+  Bank 48309: 3,882 records trained | 25 positives
+
+Validation:
+  Precision: 0.0020
+  Recall: 0.4570
+  F1: 0.0041
+  ROC-AUC: 0.6554
+  PR-AUC: 0.0036
+
+============================================================
+FEDERATED ROUND 4/10
+============================================================
+  Bank 10: 65,225 records trained | 46 positives
+  Bank 12: 64,594 records trained | 74 positives
+  Bank 1: 48,628 records trained | 32 positives
+  Bank 15: 45,549 records trained | 34 positives
+  Bank 20: 33,146 records trained | 40 positives
+  Bank 11: 23,157 records trained | 25 positives
+  Bank 119: 17,006 records trained | 49 positives
+  Bank 222: 7,403 records trained | 31 positives
+  Bank 223: 6,933 records trained | 12 positives
+  Bank 48309: 3,882 records trained | 25 positives
+
+Validation:
+  Precision: 0.0021
+  Recall: 0.4875
+  F1: 0.0041
+  ROC-AUC: 0.6644
+  PR-AUC: 0.0029
+
+============================================================
+FEDERATED ROUND 5/10
+============================================================
+  Bank 10: 65,225 records trained | 46 positives
+  Bank 12: 64,594 records trained | 74 positives
+  Bank 1: 48,628 records trained | 32 positives
+  Bank 15: 45,549 records trained | 34 positives
+  Bank 20: 33,146 records trained | 40 positives
+  Bank 11: 23,157 records trained | 25 positives
+  Bank 119: 17,006 records trained | 49 positives
+  Bank 222: 7,403 records trained | 31 positives
+  Bank 223: 6,933 records trained | 12 positives
+  Bank 48309: 3,882 records trained | 25 positives
+
+Validation:
+  Precision: 0.0025
+  Recall: 0.3756
+  F1: 0.0050
+  ROC-AUC: 0.6687
+  PR-AUC: 0.0043
+
+============================================================
+FEDERATED ROUND 6/10
+============================================================
+  Bank 10: 65,225 records trained | 46 positives
+  Bank 12: 64,594 records trained | 74 positives
+  Bank 1: 48,628 records trained | 32 positives
+  Bank 15: 45,549 records trained | 34 positives
+  Bank 20: 33,146 records trained | 40 positives
+  Bank 11: 23,157 records trained | 25 positives
+  Bank 119: 17,006 records trained | 49 positives
+  Bank 222: 7,403 records trained | 31 positives
+  Bank 223: 6,933 records trained | 12 positives
+  Bank 48309: 3,882 records trained | 25 positives
+
+Validation:
+  Precision: 0.0027
+  Recall: 0.3691
+  F1: 0.0053
+  ROC-AUC: 0.6753
+  PR-AUC: 0.0045
+
+============================================================
+FEDERATED ROUND 7/10
+============================================================
+  Bank 10: 65,225 records trained | 46 positives
+  Bank 12: 64,594 records trained | 74 positives
+  Bank 1: 48,628 records trained | 32 positives
+  Bank 15: 45,549 records trained | 34 positives
+  Bank 20: 33,146 records trained | 40 positives
+  Bank 11: 23,157 records trained | 25 positives
+  Bank 119: 17,006 records trained | 49 positives
+  Bank 222: 7,403 records trained | 31 positives
+  Bank 223: 6,933 records trained | 12 positives
+  Bank 48309: 3,882 records trained | 25 positives
+
+Validation:
+  Precision: 0.0024
+  Recall: 0.4329
+  F1: 0.0048
+  ROC-AUC: 0.6726
+  PR-AUC: 0.0048
+
+============================================================
+FEDERATED ROUND 8/10
+============================================================
+  Bank 10: 65,225 records trained | 46 positives
+  Bank 12: 64,594 records trained | 74 positives
+  Bank 1: 48,628 records trained | 32 positives
+  Bank 15: 45,549 records trained | 34 positives
+  Bank 20: 33,146 records trained | 40 positives
+  Bank 11: 23,157 records trained | 25 positives
+  Bank 119: 17,006 records trained | 49 positives
+  Bank 222: 7,403 records trained | 31 positives
+  Bank 223: 6,933 records trained | 12 positives
+  Bank 48309: 3,882 records trained | 25 positives
+
+Validation:
+  Precision: 0.0044
+  Recall: 0.2599
+  F1: 0.0087
+  ROC-AUC: 0.6799
+  PR-AUC: 0.0050
+
+============================================================
+FEDERATED ROUND 9/10
+============================================================
+  Bank 10: 65,225 records trained | 46 positives
+  Bank 12: 64,594 records trained | 74 positives
+  Bank 1: 48,628 records trained | 32 positives
+  Bank 15: 45,549 records trained | 34 positives
+  Bank 20: 33,146 records trained | 40 positives
+  Bank 11: 23,157 records trained | 25 positives
+  Bank 119: 17,006 records trained | 49 positives
+  Bank 222: 7,403 records trained | 31 positives
+  Bank 223: 6,933 records trained | 12 positives
+  Bank 48309: 3,882 records trained | 25 positives
+
+Validation:
+  Precision: 0.0020
+  Recall: 0.5125
+  F1: 0.0041
+  ROC-AUC: 0.6656
+  PR-AUC: 0.0051
+
+============================================================
+FEDERATED ROUND 10/10
+============================================================
+  Bank 10: 65,225 records trained | 46 positives
+  Bank 12: 64,594 records trained | 74 positives
+  Bank 1: 48,628 records trained | 32 positives
+  Bank 15: 45,549 records trained | 34 positives
+  Bank 20: 33,146 records trained | 40 positives
+  Bank 11: 23,157 records trained | 25 positives
+  Bank 119: 17,006 records trained | 49 positives
+  Bank 222: 7,403 records trained | 31 positives
+  Bank 223: 6,933 records trained | 12 positives
+  Bank 48309: 3,882 records trained | 25 positives
+
+Validation:
+  Precision: 0.0018
+  Recall: 0.6059
+  F1: 0.0036
+  ROC-AUC: 0.6695
+  PR-AUC: 0.0052
+
+=== Validation Threshold Selection ===
+Best threshold: 0.96
+Validation Precision: 0.0218
+Validation Recall: 0.0657
+Validation F1: 0.0328
+Validation ROC-AUC: 0.6695
+Validation PR-AUC: 0.0052
+
+=== FINAL FEDERATED TEST RESULTS ===
+Precision: 0.0093
+Recall: 0.0595
+F1: 0.0161
+ROC-AUC: 0.5492
+PR-AUC: 0.0032
+Threshold: 0.96
+
+Federated GraphSAGE (fixed review-capacity framing):
+  Top-1% (10,157 transactions reviewed): Precision=0.0098  Recall=0.0556  (100/1798 laundering transactions caught)
+  Top-5% (50,783 transactions reviewed): Precision=0.0051  Recall=0.1429  (257/1798 laundering transactions caught)
+  Top-10% (101,567 transactions reviewed): Precision=0.0037  Recall=0.2102  (378/1798 laundering transactions caught)
+
+Global model saved to:
+results\metrics\federated_plain_s42.pt
+
+Total time: 423.6s

@@ -1,0 +1,12 @@
+pooled unique edges: 303,730 | sum of per-client sizes: 315,523 | duplicated: 11,793
+training edges: 303,730 | positives: 309
+parameters: 13250
+  step 10/20 loss 0.5050
+  step 20/20 loss 0.3851
+
+=== CONTROL (pooled, 20 steps, seed 123) ===
+Validation ROC-AUC: 0.6706
+Test ROC-AUC: 0.5408 | F1 0.0106 | PR-AUC 0.0024
+  Top-1%: Precision=0.0058  Recall=0.0328  (59/1798)
+  Top-5%: Precision=0.0038  Recall=0.1062  (191/1798)
+  Top-10%: Precision=0.0027  Recall=0.1541  (277/1798)

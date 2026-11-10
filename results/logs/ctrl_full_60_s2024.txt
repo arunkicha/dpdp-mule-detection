@@ -1,0 +1,15 @@
+training edges: 3,047,007 | positives: 2,298
+parameters: 13250
+  step 10/60 loss 0.5904
+  step 20/60 loss 0.4545
+  step 30/60 loss 0.3961
+  step 40/60 loss 0.3491
+  step 50/60 loss 0.3294
+  step 60/60 loss 0.3121
+
+=== CONTROL (full, 60 steps, seed 2024) ===
+Validation ROC-AUC: 0.8456
+Test ROC-AUC: 0.6850 | F1 0.0459 | PR-AUC 0.0113
+  Top-1%: Precision=0.0275  Recall=0.1552  (279/1798)
+  Top-5%: Precision=0.0113  Recall=0.3204  (576/1798)
+  Top-10%: Precision=0.0073  Recall=0.4116  (740/1798)

@@ -1,0 +1,31 @@
+Loading data/processed/graph_data.pt...
+Building per-transaction feature matrix [src_features || dst_features || edge_features]...
+Transactions: 5,078,345 | Features per transaction: 43
+
+Training HistGradientBoosting...
+
+=== Validation Metrics ===
+  precision: 0.0062
+  recall: 0.6327
+  f1: 0.0123
+  auc: 0.8830
+  pr_auc: 0.0257
+
+=== Validation Threshold Selection ===
+Best threshold: 0.94
+Validation Precision: 0.0642
+Validation Recall: 0.1360
+Validation F1: 0.0872
+
+=== Final Test Metrics (edge-level, is_laundering) ===
+  precision: 0.0638
+  recall: 0.1046
+  f1: 0.0792
+  auc: 0.8504
+  pr_auc: 0.0248
+  threshold: 0.94
+
+HistGradientBoosting Baseline (fixed review-capacity framing):
+  Top-1% (10,157 transactions reviewed): Precision=0.0431  Recall=0.2436  (438/1798 laundering transactions caught)
+  Top-5% (50,783 transactions reviewed): Precision=0.0155  Recall=0.4388  (789/1798 laundering transactions caught)
+  Top-10% (101,567 transactions reviewed): Precision=0.0095  Recall=0.5378  (967/1798 laundering transactions caught)

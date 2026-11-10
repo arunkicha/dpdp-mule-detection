@@ -1,0 +1,328 @@
+Using device: cpu
+Seed: 2024
+
+Loading transaction data...
+Nodes: 515,088
+Transactions: 5,078,345
+Training transactions: 3,047,007
+Validation transactions: 1,015,669
+Test transactions: 1,015,669
+
+DP Federated clients: 10
+Clients:
+[10, 12, 1, 15, 20, 11, 119, 222, 223, 48309]
+
+Preparing client datasets...
+  Bank 10: 65,225 records | 46 positives
+  Bank 12: 64,594 records | 74 positives
+  Bank 1: 48,628 records | 32 positives
+  Bank 15: 45,549 records | 34 positives
+  Bank 20: 33,146 records | 40 positives
+  Bank 11: 23,157 records | 25 positives
+  Bank 119: 17,006 records | 49 positives
+  Bank 222: 7,403 records | 31 positives
+  Bank 223: 6,933 records | 12 positives
+  Bank 48309: 3,882 records | 25 positives
+
+============================================================
+DP CONFIGURATION
+============================================================
+Clipping norm:     1.0
+Noise multiplier:  0.0
+Delta:             1e-05
+Rounds:            10
+Local epochs:      2
+Personalized DP:   False
+Privacy mechanism: per-client update clipping + weighted FedAvg + Gaussian noise on aggregated update
+
+WARNING:
+noise_multiplier=0 disables Gaussian noise.
+This is a NON-PRIVATE sanity-check run.
+
+============================================================
+DP-FEDERATED ROUND 1/10
+============================================================
+  Bank 10: 65,225 records | 46 positives
+  Bank 12: 64,594 records | 74 positives
+  Bank 1: 48,628 records | 32 positives
+  Bank 15: 45,549 records | 34 positives
+  Bank 20: 33,146 records | 40 positives
+  Bank 11: 23,157 records | 25 positives
+  Bank 119: 17,006 records | 49 positives
+  Bank 222: 7,403 records | 31 positives
+  Bank 223: 6,933 records | 12 positives
+  Bank 48309: 3,882 records | 25 positives
+
+Validation:
+  Precision: 0.0013
+  Recall: 0.0398
+  F1: 0.0026
+  ROC-AUC: 0.5418
+  PR-AUC: 0.0013
+  Average update norm: 0.9401
+  Clients clipped: 0/10
+  Sensitivity (max_i weight_i*max_norm_i): 0.206720
+  Noise std: 0.000000
+
+============================================================
+DP-FEDERATED ROUND 2/10
+============================================================
+  Bank 10: 65,225 records | 46 positives
+  Bank 12: 64,594 records | 74 positives
+  Bank 1: 48,628 records | 32 positives
+  Bank 15: 45,549 records | 34 positives
+  Bank 20: 33,146 records | 40 positives
+  Bank 11: 23,157 records | 25 positives
+  Bank 119: 17,006 records | 49 positives
+  Bank 222: 7,403 records | 31 positives
+  Bank 223: 6,933 records | 12 positives
+  Bank 48309: 3,882 records | 25 positives
+
+Validation:
+  Precision: 0.0016
+  Recall: 0.1841
+  F1: 0.0032
+  ROC-AUC: 0.6409
+  PR-AUC: 0.0016
+  Average update norm: 0.9358
+  Clients clipped: 0/10
+  Sensitivity (max_i weight_i*max_norm_i): 0.206720
+  Noise std: 0.000000
+
+============================================================
+DP-FEDERATED ROUND 3/10
+============================================================
+  Bank 10: 65,225 records | 46 positives
+  Bank 12: 64,594 records | 74 positives
+  Bank 1: 48,628 records | 32 positives
+  Bank 15: 45,549 records | 34 positives
+  Bank 20: 33,146 records | 40 positives
+  Bank 11: 23,157 records | 25 positives
+  Bank 119: 17,006 records | 49 positives
+  Bank 222: 7,403 records | 31 positives
+  Bank 223: 6,933 records | 12 positives
+  Bank 48309: 3,882 records | 25 positives
+
+Validation:
+  Precision: 0.0018
+  Recall: 0.2849
+  F1: 0.0036
+  ROC-AUC: 0.6602
+  PR-AUC: 0.0017
+  Average update norm: 0.9294
+  Clients clipped: 0/10
+  Sensitivity (max_i weight_i*max_norm_i): 0.206720
+  Noise std: 0.000000
+
+============================================================
+DP-FEDERATED ROUND 4/10
+============================================================
+  Bank 10: 65,225 records | 46 positives
+  Bank 12: 64,594 records | 74 positives
+  Bank 1: 48,628 records | 32 positives
+  Bank 15: 45,549 records | 34 positives
+  Bank 20: 33,146 records | 40 positives
+  Bank 11: 23,157 records | 25 positives
+  Bank 119: 17,006 records | 49 positives
+  Bank 222: 7,403 records | 31 positives
+  Bank 223: 6,933 records | 12 positives
+  Bank 48309: 3,882 records | 25 positives
+
+Validation:
+  Precision: 0.0023
+  Recall: 0.3506
+  F1: 0.0046
+  ROC-AUC: 0.6918
+  PR-AUC: 0.0020
+  Average update norm: 0.8897
+  Clients clipped: 0/10
+  Sensitivity (max_i weight_i*max_norm_i): 0.206720
+  Noise std: 0.000000
+
+============================================================
+DP-FEDERATED ROUND 5/10
+============================================================
+  Bank 10: 65,225 records | 46 positives
+  Bank 12: 64,594 records | 74 positives
+  Bank 1: 48,628 records | 32 positives
+  Bank 15: 45,549 records | 34 positives
+  Bank 20: 33,146 records | 40 positives
+  Bank 11: 23,157 records | 25 positives
+  Bank 119: 17,006 records | 49 positives
+  Bank 222: 7,403 records | 31 positives
+  Bank 223: 6,933 records | 12 positives
+  Bank 48309: 3,882 records | 25 positives
+
+Validation:
+  Precision: 0.0033
+  Recall: 0.2266
+  F1: 0.0066
+  ROC-AUC: 0.7220
+  PR-AUC: 0.0026
+  Average update norm: 0.8388
+  Clients clipped: 0/10
+  Sensitivity (max_i weight_i*max_norm_i): 0.206720
+  Noise std: 0.000000
+
+============================================================
+DP-FEDERATED ROUND 6/10
+============================================================
+  Bank 10: 65,225 records | 46 positives
+  Bank 12: 64,594 records | 74 positives
+  Bank 1: 48,628 records | 32 positives
+  Bank 15: 45,549 records | 34 positives
+  Bank 20: 33,146 records | 40 positives
+  Bank 11: 23,157 records | 25 positives
+  Bank 119: 17,006 records | 49 positives
+  Bank 222: 7,403 records | 31 positives
+  Bank 223: 6,933 records | 12 positives
+  Bank 48309: 3,882 records | 25 positives
+
+Validation:
+  Precision: 0.0011
+  Recall: 0.9075
+  F1: 0.0022
+  ROC-AUC: 0.5145
+  PR-AUC: 0.0012
+  Average update norm: 0.7852
+  Clients clipped: 0/10
+  Sensitivity (max_i weight_i*max_norm_i): 0.206720
+  Noise std: 0.000000
+
+============================================================
+DP-FEDERATED ROUND 7/10
+============================================================
+  Bank 10: 65,225 records | 46 positives
+  Bank 12: 64,594 records | 74 positives
+  Bank 1: 48,628 records | 32 positives
+  Bank 15: 45,549 records | 34 positives
+  Bank 20: 33,146 records | 40 positives
+  Bank 11: 23,157 records | 25 positives
+  Bank 119: 17,006 records | 49 positives
+  Bank 222: 7,403 records | 31 positives
+  Bank 223: 6,933 records | 12 positives
+  Bank 48309: 3,882 records | 25 positives
+
+Validation:
+  Precision: 0.0036
+  Recall: 0.2035
+  F1: 0.0071
+  ROC-AUC: 0.7116
+  PR-AUC: 0.0028
+  Average update norm: 0.7441
+  Clients clipped: 0/10
+  Sensitivity (max_i weight_i*max_norm_i): 0.206720
+  Noise std: 0.000000
+
+============================================================
+DP-FEDERATED ROUND 8/10
+============================================================
+  Bank 10: 65,225 records | 46 positives
+  Bank 12: 64,594 records | 74 positives
+  Bank 1: 48,628 records | 32 positives
+  Bank 15: 45,549 records | 34 positives
+  Bank 20: 33,146 records | 40 positives
+  Bank 11: 23,157 records | 25 positives
+  Bank 119: 17,006 records | 49 positives
+  Bank 222: 7,403 records | 31 positives
+  Bank 223: 6,933 records | 12 positives
+  Bank 48309: 3,882 records | 25 positives
+
+Validation:
+  Precision: 0.0018
+  Recall: 0.6161
+  F1: 0.0035
+  ROC-AUC: 0.6515
+  PR-AUC: 0.0017
+  Average update norm: 0.8471
+  Clients clipped: 0/10
+  Sensitivity (max_i weight_i*max_norm_i): 0.206720
+  Noise std: 0.000000
+
+============================================================
+DP-FEDERATED ROUND 9/10
+============================================================
+  Bank 10: 65,225 records | 46 positives
+  Bank 12: 64,594 records | 74 positives
+  Bank 1: 48,628 records | 32 positives
+  Bank 15: 45,549 records | 34 positives
+  Bank 20: 33,146 records | 40 positives
+  Bank 11: 23,157 records | 25 positives
+  Bank 119: 17,006 records | 49 positives
+  Bank 222: 7,403 records | 31 positives
+  Bank 223: 6,933 records | 12 positives
+  Bank 48309: 3,882 records | 25 positives
+
+Validation:
+  Precision: 0.0024
+  Recall: 0.4912
+  F1: 0.0047
+  ROC-AUC: 0.6998
+  PR-AUC: 0.0031
+  Average update norm: 0.7813
+  Clients clipped: 0/10
+  Sensitivity (max_i weight_i*max_norm_i): 0.206720
+  Noise std: 0.000000
+
+============================================================
+DP-FEDERATED ROUND 10/10
+============================================================
+  Bank 10: 65,225 records | 46 positives
+  Bank 12: 64,594 records | 74 positives
+  Bank 1: 48,628 records | 32 positives
+  Bank 15: 45,549 records | 34 positives
+  Bank 20: 33,146 records | 40 positives
+  Bank 11: 23,157 records | 25 positives
+  Bank 119: 17,006 records | 49 positives
+  Bank 222: 7,403 records | 31 positives
+  Bank 223: 6,933 records | 12 positives
+  Bank 48309: 3,882 records | 25 positives
+
+Validation:
+  Precision: 0.0018
+  Recall: 0.7003
+  F1: 0.0035
+  ROC-AUC: 0.6703
+  PR-AUC: 0.0034
+  Average update norm: 0.7967
+  Clients clipped: 0/10
+  Sensitivity (max_i weight_i*max_norm_i): 0.206720
+  Noise std: 0.000000
+
+=== Validation Threshold Selection ===
+Best threshold: 0.95
+Validation Precision: 0.0110
+Validation Recall: 0.0102
+Validation F1: 0.0106
+Validation ROC-AUC: 0.6703
+Validation PR-AUC: 0.0034
+
+=== FINAL DP-FEDERATED TEST RESULTS ===
+Precision: 0.0053
+Recall: 0.0145
+F1: 0.0078
+ROC-AUC: 0.5463
+PR-AUC: 0.0022
+Threshold: 0.95
+
+DP-Federated (uniform) (fixed review-capacity framing):
+  Top-1% (10,157 transactions reviewed): Precision=0.0038  Recall=0.0217  (39/1798 laundering transactions caught)
+  Top-5% (50,783 transactions reviewed): Precision=0.0027  Recall=0.0751  (135/1798 laundering transactions caught)
+  Top-10% (101,567 transactions reviewed): Precision=0.0025  Recall=0.1402  (252/1798 laundering transactions caught)
+
+=== PRIVACY CONFIGURATION ===
+Delta: 1.00e-05
+Noise multiplier: 0.0000
+Clipping norm (base): 1.0000
+Rounds: 10
+Personalized: False
+
+Privacy mechanism:
+Per-client L2 clipping (uniform or personalized) followed by weighted FedAvg and Gaussian noise on the aggregated update.
+
+noise_multiplier=0: no privacy guarantee (non-private sanity check).
+
+Global DP model saved to:
+results\metrics\dp_uniform_nm0_s2024.pt
+
+Total time: 342.8s

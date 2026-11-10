@@ -13,4 +13,14 @@ __pycache__/
 
 # OS
 .DS_Store
-Thumbs.db
+Thumbs.db# Large files / generated artifacts (not committed)
+*.pt
+*.pth
+*.parquet
+*.csv
+*.pkl
+*.npy
+*.zip
+results/*.pt
+data/
+checkpoints/

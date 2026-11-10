@@ -1,0 +1,9 @@
+training edges: 3,047,007 | positives: 2,298
+parameters: 13250
+
+=== CONTROL (full, 0 steps, init_noise 3.3, seed 2024) ===
+Validation ROC-AUC: 0.5233
+Test ROC-AUC: 0.5236 | F1 0.0074 | PR-AUC 0.0020
+  Top-1%: Precision=0.0088  Recall=0.0495  (89/1798)
+  Top-5%: Precision=0.0035  Recall=0.0979  (176/1798)
+  Top-10%: Precision=0.0023  Recall=0.1313  (236/1798)

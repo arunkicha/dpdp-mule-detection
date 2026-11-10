@@ -1,24 +1,29 @@
 """
-AMLworld HI-Small -- PyTorch Geometric Dataset Loader
-=======================================================
+AMLworld HI-Small -- EDGE-LEVEL Dataset Loader (MAIN TASK)
+=============================================================
 
-Loads the parquet artifacts produced by build_graph.py and assembles a
-PyTorch Geometric `Data` object for EDGE classification (each transaction
-is laundering / not-laundering -- this is not a node classification task).
+Builds the transaction-level (edge) classification dataset used by
+EVERY model in the main results table: tabular_baseline.py,
+strong_account_baseline.py, and gnn_baseline.py.
 
-Node features are built from per-account transaction aggregates, since
-build_graph.py only produced edge-level features. This is standard
-practice for transaction-graph fraud/AML detection (see e.g. the IBM
-AMLworld baseline GNN papers).
+Task: is this TRANSACTION laundering? (data.y = is_laundering, per edge)
+This is the real IBM label -- not a derived/proxy label.
 
-Usage (as a library):
-    from dataset import load_aml_data
-    data = load_aml_data("data/processed")
-    # data.x            -> [num_nodes, num_node_features]
-    # data.edge_index   -> [2, num_edges]
-    # data.edge_attr    -> [num_edges, num_edge_features]
-    # data.y            -> [num_edges]  (is_laundering, 0/1)
-    # data.train_mask / data.val_mask / data.test_mask -> [num_edges] bool
+Node features (14-dim, log1p-scaled) are built from TRAIN-split edges
+only, to avoid leaking validation/test structure into account-level
+statistics.
+
+Output: a single Data object with:
+  - data.x            : [num_nodes, 14]  node (account) features
+  - data.edge_index    : [2, num_edges]   all edges (src, dst)
+  - data.edge_attr     : [num_edges, F]   edge (transaction) features
+  - data.y             : [num_edges]      is_laundering (0/1), per edge
+  - data.train_mask / val_mask / test_mask : [num_edges] bool, over EDGES
+
+gnn_baseline.py already expects exactly this shape -- no changes needed
+there. tabular_baseline.py / strong_account_baseline.py are rewritten
+separately to build [x[src] || x[dst] || edge_attr] feature rows from
+this same Data object, so all three models solve the identical task.
 """
 
 from pathlib import Path
@@ -31,51 +36,61 @@ from torch_geometric.data import Data
 
 NODE_FEATURE_COLS = [
     "out_degree", "in_degree", "total_degree",
+    "out_unique_counterparties", "in_unique_counterparties",
     "out_amount_sum", "in_amount_sum",
     "out_amount_mean", "in_amount_mean",
-    "out_laundering_count", "in_laundering_count",
+    "out_amount_std", "in_amount_std",
+    "out_bank_count", "in_bank_count",
+    "out_in_degree_ratio",
 ]
+# NOTE: no laundering-count features here -- including "how many
+# laundering transactions has this account touched" as a NODE FEATURE
+# would leak the label directly. Only structural/volume statistics.
 
 
 def build_node_features(edges: pd.DataFrame, num_nodes: int) -> np.ndarray:
-    """
-    Aggregate per-account statistics from the transaction (edge) table.
-    Purely computed from TRAIN-split edges would be more rigorous (avoids
-    leaking val/test structure into node features), but for a first
-    baseline we use the full edge set -- note this as a known limitation
-    to mention in your Review 2 writeup / and a straightforward
-    improvement for Review 3.
-    """
+    """Built from TRAIN-split edges only (caller passes train_edges)."""
     feats = np.zeros((num_nodes, len(NODE_FEATURE_COLS)), dtype=np.float32)
 
-    out_deg = edges.groupby("src").size()
-    in_deg = edges.groupby("dst").size()
-    out_amt_sum = edges.groupby("src")["amount_paid"].sum()
-    in_amt_sum = edges.groupby("dst")["amount_received"].sum()
-    out_amt_mean = edges.groupby("src")["amount_paid"].mean()
-    in_amt_mean = edges.groupby("dst")["amount_received"].mean()
-    out_laund = edges.groupby("src")["is_laundering"].sum()
-    in_laund = edges.groupby("dst")["is_laundering"].sum()
+    out_group = edges.groupby("src")
+    in_group = edges.groupby("dst")
+
+    out_degree = out_group.size()
+    in_degree = in_group.size()
+    out_unique = out_group["dst"].nunique()
+    in_unique = in_group["src"].nunique()
+    out_amount_sum = out_group["amount_paid"].sum()
+    in_amount_sum = in_group["amount_received"].sum()
+    out_amount_mean = out_group["amount_paid"].mean()
+    in_amount_mean = in_group["amount_received"].mean()
+    out_amount_std = out_group["amount_paid"].std().fillna(0)
+    in_amount_std = in_group["amount_received"].std().fillna(0)
+    out_bank_count = out_group["dst"].nunique()
+    in_bank_count = in_group["src"].nunique()
 
     def fill(series, col_idx):
         idx = series.index.to_numpy()
-        vals = series.to_numpy()
+        vals = series.to_numpy(dtype=np.float32)
         valid = (idx >= 0) & (idx < num_nodes)
         feats[idx[valid], col_idx] = vals[valid]
 
-    fill(out_deg, 0)
-    fill(in_deg, 1)
-    feats[:, 2] = feats[:, 0] + feats[:, 1]  # total_degree
-    fill(out_amt_sum, 3)
-    fill(in_amt_sum, 4)
-    fill(out_amt_mean, 5)
-    fill(in_amt_mean, 6)
-    fill(out_laund, 7)
-    fill(in_laund, 8)
+    fill(out_degree, 0)
+    fill(in_degree, 1)
+    feats[:, 2] = feats[:, 0] + feats[:, 1]
+    fill(out_unique, 3)
+    fill(in_unique, 4)
+    fill(out_amount_sum, 5)
+    fill(in_amount_sum, 6)
+    fill(out_amount_mean, 7)
+    fill(in_amount_mean, 8)
+    fill(out_amount_std, 9)
+    fill(in_amount_std, 10)
+    fill(out_bank_count, 11)
+    fill(in_bank_count, 12)
+    feats[:, 13] = feats[:, 0] / np.maximum(feats[:, 1], 1)
 
-    # log1p-scale the heavy-tailed amount/degree columns for training stability
-    for col_idx in [0, 1, 2, 3, 4, 5, 6]:
-        feats[:, col_idx] = np.log1p(feats[:, col_idx])
+    for col_idx in range(len(NODE_FEATURE_COLS)):
+        feats[:, col_idx] = np.log1p(np.maximum(feats[:, col_idx], 0))
 
     return feats
 
@@ -88,14 +103,15 @@ def load_aml_data(processed_dir: str) -> Data:
     node_bank = pd.read_parquet(processed_dir / "node_bank_lookup.parquet")
 
     assert len(edges) == len(edge_feats), (
-        "edges_full.parquet and edge_features.parquet row counts differ -- "
-        "they must be row-aligned outputs from the same build_graph.py run."
+        "edges_full.parquet and edge_features.parquet row counts differ."
     )
 
     num_nodes = int(node_bank["node_id"].max()) + 1
+    train_edges = edges[edges["split"] == "train"].copy()
 
-    print(f"Building node features from {len(edges):,} edges over {num_nodes:,} nodes...")
-    x = build_node_features(edges, num_nodes)
+    print(f"Building node features from {len(train_edges):,} TRAIN edges "
+          f"over {num_nodes:,} nodes...")
+    x = build_node_features(train_edges, num_nodes)
 
     edge_index = torch.tensor(
         np.stack([edges["src"].to_numpy(), edges["dst"].to_numpy()]),
@@ -132,12 +148,9 @@ if __name__ == "__main__":
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--processed_dir", default="data/processed")
-    ap.add_argument("--save_to", default=None,
-                     help="Optional path to save the Data object via torch.save")
+    ap.add_argument("--save_to", default="data/processed/graph_data.pt")
     args = ap.parse_args()
 
     data = load_aml_data(args.processed_dir)
-
-    if args.save_to:
-        torch.save(data, args.save_to)
-        print(f"Saved Data object to {args.save_to}")
+    torch.save(data, args.save_to)
+    print(f"Saved Data object to {args.save_to}")

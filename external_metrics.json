@@ -1,0 +1,44 @@
+{
+  "_comment": "Fill from terminal output. null = not available yet. alert: {top-k fraction: [precision, recall]}",
+  "centralized_gnn": {
+    "roc_auc_mean": 0.689,
+    "roc_auc_std": 0.02,
+    "alert": {
+      "0.01": [0.0345, 0.195],
+      "0.05": [0.0126, 0.355],
+      "0.1": [0.0075, 0.423]
+    },
+    "note": "alert-budget from seed 42 only"
+  },
+  "federated_gnn": {
+    "roc_auc_mean": 0.5717,
+    "roc_auc_std": 0.0426,
+    "alert": {
+      "0.01": [0.0089, 0.0501],
+      "0.05": [0.0050, 0.1415],
+      "0.1": [0.0038, 0.2139]
+    },
+    "note": "5-seed mean; fallback only, make_figures recomputes from federated_plain_s*.pt if present"
+  },
+  "logistic_regression": {
+    "roc_auc_mean": 0.638,
+    "roc_auc_std": 0,
+    "alert": {
+      "0.01": [0.0052, 0.03],
+      "0.05": [0.0047, 0.132],
+      "0.1": [0.0044, 0.246]
+    },
+    "note": "deterministic single run; test ROC-AUC 0.638"
+  },
+  "hist_gradient_boosting": {
+    "roc_auc_mean": null,
+    "roc_auc_std": null,
+    "alert": {
+      "0.01": [0.0431, 0.244],
+      "0.05": [0.0155, 0.439],
+      "0.1": [0.0095, 0.538]
+    },
+    "note": "fill ROC-AUC from tabular_baseline.py output"
+  },
+  "test_positive_rate": 0.00177
+}

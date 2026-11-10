@@ -1,0 +1,32 @@
+Loading data/processed/graph_data.pt...
+Building per-transaction feature matrix [src_features || dst_features || edge_features]...
+Transactions: 5,078,345 | Features per transaction: 43
+Train positives: 2,298 / 3,047,007
+
+Training Logistic Regression...
+
+=== Validation Metrics ===
+  precision: 0.0029
+  recall: 0.6984
+  f1: 0.0058
+  auc: 0.7849
+  pr_auc: 0.0044
+
+=== Validation Threshold Selection ===
+Best threshold: 0.97
+Validation Precision: 0.0143
+Validation Recall: 0.0352
+Validation F1: 0.0203
+
+=== Final Test Metrics (edge-level, is_laundering) ===
+  precision: 0.0052
+  recall: 0.0256
+  f1: 0.0087
+  auc: 0.6380
+  pr_auc: 0.0033
+  threshold: 0.97
+
+Logistic Regression Baseline (fixed review-capacity framing):
+  Top-1% (10,157 transactions reviewed): Precision=0.0052  Recall=0.0295  (53/1798 laundering transactions caught)
+  Top-5% (50,783 transactions reviewed): Precision=0.0047  Recall=0.1324  (238/1798 laundering transactions caught)
+  Top-10% (101,567 transactions reviewed): Precision=0.0044  Recall=0.2464  (443/1798 laundering transactions caught)
